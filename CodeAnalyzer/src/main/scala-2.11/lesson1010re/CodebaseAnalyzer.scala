@@ -10,25 +10,15 @@ import lesson1010re.utils.FileUtil
 trait CodebaseAnalyzer {
   this: DirectoryScanner =>
   def countFileNum(path : Path) : Map[FileType, Int] = {
-    val files = scan(path)
-    files.groupBy(f => FileUtil.getExtraName(f)).mapValues(_.length)
-
-//    files.foldLeft(Map[FileType, Int]()) { (acc, f) =>
-////      if (f.isFile) acc + 1 else acc + scan(f.getAbsolutePath)
-//      if (f.isFile) {
-//        val postfix = utils.FileUtil.getExtraName(f.getAbsolutePath)
-//        if (acc.contains(postfix)) {
-//          acc.updated(postfix, acc(postfix) + 1)
-//        } else {
-//          acc + (postfix -> 1)
-//        }
-//      } else {
-////        acc ++ scan(f.getAbsolutePath)
-//      }
-//
-//    }
+    countNum(scan(path))
   }
-  def analyzeFile(path: Path) : Int = ???
+  def countNum(seq : Seq[Path]) : Map[FileType, Int] = {
+    seq.groupBy(f => FileUtil.getExtraName(f)).mapValues(_.length)
+  }
+  def analyzeFile(path: Path) : SourceCodeInfo = {
+    val source = new SourceCodeAnalyzer {}
+    source.processFile(path)
+  }
 }
 
 object CodebaseAnalyzer {
