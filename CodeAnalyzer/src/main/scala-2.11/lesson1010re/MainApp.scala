@@ -13,7 +13,7 @@ object MainApp extends App {
     val file = new File(path)
     val analyzer = new CodebaseAnalyzer with DirectoryScanner with SourceCodeAnalyzer
     if (file.isFile) {
-      val source = analyzer.analyzeFile(file.getAbsolutePath)
+      val source = analyzer.processFile(file.getAbsolutePath)
       println("path: " + source.path + " name: " + source.name + " count: " + source.count)
     } else {
       analyzer.countFileNum(file.getAbsolutePath).foreach{

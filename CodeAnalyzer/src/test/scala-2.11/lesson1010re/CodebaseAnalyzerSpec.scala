@@ -16,7 +16,8 @@ class CodebaseAnalyzerSpec extends FunSpec with ShouldMatchers {
       ds.countFileNum("jdfksjdkjf") should contain theSameElementsAs Map("scala" -> 3, "py" -> 1, "txt" -> 1, EmptyFileType -> 1)
     }
     it("should countNum return the Map[FileType, Int]") {
-      ds.countNum(ds.scan("dddddd")) should contain theSameElementsAs Map("scala" -> 3, "py" -> 1, "txt" -> 1, EmptyFileType -> 1)
+      val list = List("a.scala", "b.scala", "cc.scala", "def.py", "test.txt", "thesamfile")
+      ds.countFileTypeNum(list) should contain theSameElementsAs Map("scala" -> 3, "py" -> 1, "txt" -> 1, EmptyFileType -> 1)
     }
   }
 }
