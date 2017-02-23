@@ -10,13 +10,11 @@ trait DirectoryScanner {
     val file = new File(path)
     val files = file.listFiles()
     files.foldLeft(Vector[Path]()) { (acc, f) =>
-      //      if (f.isFile) acc + 1 else acc + scan(f.getAbsolutePath)
       if (f.isFile) {
         acc :+ f.getAbsolutePath
       } else {
         acc ++ scan(f.getAbsolutePath)
       }
-
     }
   }
 }

@@ -17,6 +17,5 @@ class DirectoryScannerSpec extends FunSpec with ShouldMatchers {
         seq.contains(file) shouldBe true
       }
     }
-
   }
 }
